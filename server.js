@@ -7,23 +7,31 @@ import { dirname } from "path";
 // to take the url of the root
 import { fileURLToPath } from "url";
 // to make the full fath ( root + localpath)
-var todayItems = [];
-var workItems = []
+
+//dosen't do anything, but it was supposed to
 const __dirname = dirname(fileURLToPath(import.meta.url));
 //what port the server uses
 const app = express();
 const port = 3000;
+//to include static files
 app.use(express.static("public"));
+//to acces body element
 app.use(bodyParser.urlencoded({ extended: true }));
+//for defining ejs as viewing engine
 app.set("view engine", "ejs");
+// strats here empty arrays for items for the lists
+var todayItems = [];
+var workItems = [];
+//ends here
 
+//when accesing the site load the to do list without any items
 app.get("/", (req,res)=>{
     res.render("index.ejs", {
         itemsT: todayItems,
         itemG : "",
     });
 });
-
+// to post items in todays to do list
 app.post("/", (req,res)=>{
     var itemNameG = req.body["forg"];
     res.render("index.ejs",{
@@ -34,7 +42,7 @@ app.post("/", (req,res)=>{
     console.log(todayItems.length);
 });
 
-
+// for the today s list button
 
 app.get("/index.ejs", (req,res)=>{
     var itemNameG = req.body["forg"];
@@ -43,14 +51,14 @@ app.get("/index.ejs", (req,res)=>{
         itemG : itemNameG,
     })
 });
-
+// for the worklist button
 app.get("/worklist.ejs", (req, res)=>{
     res.render("worklist.ejs", {
         itemW : "",
         itemsW : workItems,
     });
 });
-
+// to post items in the work list
 app.post("/submitw", (req,res)=>{
     var itemNameW = req.body["forw"];
     workItems.push (itemNameW);
@@ -66,3 +74,4 @@ app.post("/submitw", (req,res)=>{
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+//end
