@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>TO DO LIST</title>
+</head>
+<body>
+
+    <div class="container">
+            <div class="button">
+                <div>
+                    <a href="worklist.ejs">WORK LIST</a>
+                </div>
+                <div>
+                    <a href="index.ejs">TODAY's LIST</a>
+                </div> 
+            </div>
+            <div class="workheader">
+                <h1>FOR TODAY</h1>
+            </div>
+                <div class="inputbar">
+                    <form action="/" method="post">
+                        <input type="text" name="forg" id="work">
+                        <input type="submit" value="ADD TO DO'S" id="add" > 
+                    </form>   
+                </div>
+               <% itemsT.forEach((itemG)=>{ %>
+                <div class="item">
+                    <input type="checkbox" name="itemG" id="">
+                    <h2><%= itemG %></h2>
+                </div>
+                <% }); %>
+         <div class="footer">
+         <footer>Copyright Petru Cruceru</footer>
+        </div>
+    </div>
+</body>
+
+</html>
