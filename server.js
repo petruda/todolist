@@ -17,8 +17,8 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
-app.get("/", (req,res)=>{
-    res.render("index.ejs", {
+app.get( "/", (req,res)=>{
+    res.render(__dirname + "index.ejs", {
         itemsT: todayItems,
         itemG : "",
     });
@@ -26,7 +26,7 @@ app.get("/", (req,res)=>{
 
 app.post("/", (req,res)=>{
     var itemNameG = req.body["forg"];
-    res.render("index.ejs",{
+    res.render(__dirname + "index.ejs",{
         itemsT: todayItems,
         itemG : itemNameG,
     });
@@ -38,14 +38,14 @@ app.post("/", (req,res)=>{
 
 app.get("/index.ejs", (req,res)=>{
     var itemNameG = req.body["forg"];
-    res.render("index.ejs",{
+    res.render(__dirname + "index.ejs",{
         itemsT: todayItems,
         itemG : itemNameG,
     })
 });
 
 app.get("/worklist.ejs", (req, res)=>{
-    res.render("worklist.ejs", {
+    res.render(__dirname + "worklist.ejs", {
         itemW : "",
         itemsW : workItems,
     });
@@ -54,7 +54,7 @@ app.get("/worklist.ejs", (req, res)=>{
 app.post("/submitw", (req,res)=>{
     var itemNameW = req.body["forw"];
     workItems.push (itemNameW);
-    res.render("worklist.ejs",{
+    res.render(__dirname + "worklist.ejs",{
         itemsW : workItems,
         itemW : itemNameW,
     });
